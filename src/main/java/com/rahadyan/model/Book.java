@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Book {
 	@Id
@@ -31,8 +33,15 @@ public class Book {
 
 	}
 
+	public Book(Integer id, String isbn, String title, String author, Status status) {
+		this.id = id;
+		this.isbn = isbn;
+		this.title = title;
+		this.author = author;
+		this.status = status;
+	}
+	
 	public Book(Integer id, String isbn, String title, String author, Status status, Shelf shelf) {
-		super();
 		this.id = id;
 		this.isbn = isbn;
 		this.title = title;

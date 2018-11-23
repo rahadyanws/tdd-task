@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Shelf {
 	@Id
@@ -14,8 +16,20 @@ public class Shelf {
 	private int maxCapacity;
 	private int currentCapacity;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "shelf")
 	private List<Book> books = new ArrayList<>();
+
+	public Shelf() {
+		
+	}
+
+	public Shelf(Integer shelfId, int maxCapacity, int currentCapacity) {
+		super();
+		this.shelfId = shelfId;
+		this.maxCapacity = maxCapacity;
+		this.currentCapacity = currentCapacity;
+	}
 
 	public Integer getShelfId() {
 		return shelfId;
@@ -48,5 +62,4 @@ public class Shelf {
 	public void setBooks(List<Book> books) {
 		this.books = books;
 	}
-
 }
